@@ -50,6 +50,15 @@
 								tempor incididunt ut labore et dolore magna aliqua.
 							</div>
 						</li>
+            <li class="carousel__slide glide__slide">
+              <div class = "carousel__slide__image">
+                <div id="container">
+                  <div class="choro">
+                  </div>
+                </div>
+
+            </div>
+            </li>
 					</ul>
 				</div>
 				<div class="glide__arrows" data-glide-el="controls">
@@ -58,7 +67,13 @@
 				</div>
 			</div>
 		</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.1/glide.js" ></script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js" charset="utf-8"></script>
+<script src="https://d3js.org/topojson.v2.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.1/glide.js" ></script>
+<script src="/d3/education-v3.js" charset="utf-8"></script>
     <script>
       new Glide('.glide',{
         type: 'carousel',
@@ -66,7 +81,7 @@
   //animationDuration: 400,
   animationTimingFunc: 'ease',
   perView: 1,
-  peek: 50
+  peek: 0
       }).mount()
     </script>
 </body>

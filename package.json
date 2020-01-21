@@ -4,8 +4,8 @@
   "description": "d3-portfolio-showcase",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js",
-    "ui": "browser-sync start --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify"
+    "dev": "nodemon ./index.js /css/style.css ./views/index.html",
+    "ui": "browser-sync start dev --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify"
   },
   "keywords": [
     "d3"

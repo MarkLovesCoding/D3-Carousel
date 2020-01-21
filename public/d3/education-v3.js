@@ -5,11 +5,11 @@ const EDUCATION_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/test
 
 const COUNTY_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
 
-var width = 1100;
-var height = 900;
+var width = window.innerWidth*1.08;
+var height = window.innerHeight*1.08;
 const w = window.innerHeight;
 const h = window.innerWidth;
-
+console.log("w: "+w+" h: "+h)
 var tooltip=d3.select(".choro")
   .append("div")
   .attr("id","tooltip")
@@ -106,12 +106,13 @@ var colorFunc =
       return color_scale[0]
     }
   }
-
-
+  console.log(window.innerWidth*0.6)
+  var legendTranslateX = window.innerWidth*0.58;
+  var legendTranslateY = 100
   svgBox.append('g')
     .attr("class","legendQuant")
     .attr("id","legend")
-    .attr("transform","translate(740,150)")
+    .attr("transform","translate("+legendTranslateX+","+legendTranslateY+")")
 
 
       //   //
@@ -130,7 +131,8 @@ var colorFunc =
 
   //draw map
   svgBox.append('g')
-    .attr("transform","translate(30,210)")
+    .attr("transform","translate(30,210) scale(0.8)")
+
     .attr('class','counties')
     .selectAll("path")
   //data d is
@@ -177,7 +179,7 @@ var colorFunc =
     .datum(topojson.mesh(us, us.objects.states, function(border1, border2) { return border1 !== border2; }))
     .attr("class", "states")
     .attr("d", path)
-    .attr("transform","translate(30,210)")
+    .attr("transform","translate(30,210) scale(0.8)")
 
 
 }
