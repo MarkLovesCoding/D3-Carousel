@@ -1,0 +1,43 @@
+
+html,
+body{
+  height:100%;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
+}
+ul{
+ list-style: none;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+.carousel__container {
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+}
+.carousel__slide{
+
+  width:80vw;
+  height:60vh;
+
+}
+
+img{
+  max-width:90vw;
+}
+
+.carousel__slide__image,.carousel__slide__content{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    text-align:center
+}

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./index.js /css/style.css ./views/index.html",
-    "ui": "browser-sync start dev --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify"
+    "ui": "browser-sync start dev --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify",
+    "build-css": "node-sass --include-path scss public/scss/style.scss public/css/style.css"
   },
   "keywords": [
     "d3"
@@ -18,6 +19,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-sass": "^4.13.1"
   }
 }
