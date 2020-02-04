@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto');
+.cell{
+  selection:cursor;
+
+}
+.cell:hover{
+  stroke-width:2;
+  stroke:rgba(30,30,50,1);
+}
+// body{
+//   color:black;
+//   font-size:1em;
+//   background-color:rgba(30,30,30,1);
+//   margin-top:140px;
+//    background:url("//unsplash.it/3000/2000");
+// }
+.heatMap{
+  overflow:visible;
+  width:auto;
+  width:1000px;
+  height:760px;
+  background-color:rgba(255,255,255,0.8);
+  border-radius:5px;
+//position:relative;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+  font-family:"Roboto"
+}
+
+ #containerHeat{
+  align-items:center;
+  justify-content:center;
+/*   border-radius:5px; */
+  display:flex;
+/*   height:850px; */
+/*   width:1380px; */
+/*   background:rgba(255,255,255,0.9); */
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+/*   box-shadow: 0px 0px 15px black; */
+}
+
+
+.cell{
+  stroke: #000;
+  stroke-width:0;
+  opacity: 1;
+
+
+}
+.x-axis, .y-axis{
+  stroke:black;
+  stroke-width:0.5;
+
+}
+
+#tooltip{
+  background-color:rgba(80,80,80,0.85);
+  font-weight:600;
+  color:rgba(250,240,240,1);
+  padding: 0.8em;
+  z-index:2;
+  text-align:center;
+  border-radius:20px;
+  box-shadow:1px 1px 8px rgba(0,0,0,0.9);
+  text-shadow:1px 2px 4px black;
+    font-family:"Merriweather";
+}
+
+/*  .dot:hover{
+ animation: pulse 700ms infinite
+}
+
+#tooltip{
+
+  font-size:0.8rem;
+  border-radius:6px;
+  background-color:lightgrey;
+  border:1px solid;
+  width:auto;
+  height:auto;
+  padding:5px;
+  position:absolute;
+  z-index:5;
+}   */
+svg{
+  stroke-width:1;
+  stroke:black;
+
+}
+.legend{
+  z-index:5;
+}
+// g .rect{
+//   width:50px;
+//   height:50px;
+// }

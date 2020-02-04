@@ -92,6 +92,7 @@ var colorFunc =
         //set d[0] and d[1] as domain limits of xscale
         if (d[0] == null) d[0] = x_scale.domain()[0];
         if (d[1] == null) d[1] = x_scale.domain()[1];
+
         return d;
       })
 
