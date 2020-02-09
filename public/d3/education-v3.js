@@ -1,34 +1,39 @@
 // TO DO
 // 1. fix tooltip location
-//
+//const w = window.innerHeight*0.8;
+
+//sizing/scaling
+
+const h = window.innerWidth*0.8;
+var   orientation = (screenW>screenH ?"portrait":"landscape");
+var screenH = window.screen.height;
+var screenW = window.screen.width;;
+var legendTransformByScreenSize;
+
+
 function windowSize(){
   screenH = window.screen.height
   screenW = window.screen.width;
   orientation = (screenW>screenH ?"portrait":"landscape")
   var legendTranslateX = (orientation =="landscape")?550:100;
   var legendTranslateY = (orientation =="landscape")?150:100;
-  legendTransformByScreenSize = ((orientation=="landscape")?"translate(550,150) scale(1)":"translate(350,200) scale(0.8)")
+  legendTransformByScreenSize =
+    ( orientation == "landscape" ?
+    "translate(450,150) scale(0.6)" :
+    "translate(400,200) scale(0.6)" )
   console.log("width: ",screenW)
 
 }
+
 windowSize();
 window.addEventListener("resize",windowSize());
 
+//
+//
 
 
 const EDUCATION_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json';
-
 const COUNTY_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
-
-const w = window.innerHeight*0.8;
-const h = window.innerWidth*0.8;
-var orientation;
-var screenH;
-var screenW;
-var legendTransformByScreenSize;
-
-
-
 
 var tooltip=d3.select(".choro")
   .append("div")
@@ -48,7 +53,7 @@ var tooltip=d3.select(".choro")
 var svgBox = d3.select(".choro")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-   .attr("viewBox", "0 0 "+screenW+" "+screenH+"")
+   .attr("viewBox", "0 0 "+500+" "+340+"")
    .classed("svg-content", true);
 
 
@@ -153,7 +158,10 @@ var colorFunc =
 //screen is wide
 //
 //
-let mapTransformByScreenSize = ((orientation=="landscape")?"translate(110,110) scale(0.4)":"translate(50,150) scale(0.4)")
+let mapTransformByScreenSize =
+  ( orientation == "portrait" ?
+    "translate(110,50) scale(0.4)" :
+    "translate(40,80) scale(0.4)" )
 //mapTransformByScreenSize = "translate("+100+","+100+") scale(0.4)"
   //draw map
   svgBox.append('g')

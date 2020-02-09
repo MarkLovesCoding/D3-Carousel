@@ -79,10 +79,9 @@ d3.json(url, function(error, data) {
   const svgBox = d3
     .select(".heatMap")
     .append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 "+len+" "+len+"")
-  //  .attr("transform","translate(50,0)")
-    .classed("svg-content", true)
+    .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .attr("transform","translate(50,0)")
     .call(tooltip);
 
 
