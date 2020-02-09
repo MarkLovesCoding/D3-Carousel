@@ -15,10 +15,11 @@
 //    background:url("//unsplash.it/3000/2000");
 // }
 .heatMap{
-  overflow:visible;
-  width:auto;
-  width:1000px;
-  height:760px;
+  position:absolute;
+//  overflow:visible;
+  //width:auto;
+  // width:85vw;
+  // height:75vh;
   background-color:rgba(255,255,255,0.8);
   border-radius:5px;
 //position:relative;
@@ -31,13 +32,14 @@
   justify-content:center;
 /*   border-radius:5px; */
   display:flex;
-/*   height:850px; */
-/*   width:1380px; */
+  min-height:400px;
+  height:80vh;
+   width:95vw;
 /*   background:rgba(255,255,255,0.9); */
-  margin-left:auto;
-  margin-right:auto;
+  // margin-left:auto;
+  // margin-right:auto;
   position:relative;
-/*   box-shadow: 0px 0px 15px black; */
+   box-shadow: 0px 0px 15px black;
 }
 
 

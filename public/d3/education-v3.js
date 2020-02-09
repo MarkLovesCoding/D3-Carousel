@@ -1,15 +1,35 @@
 // TO DO
 // 1. fix tooltip location
 //
+function windowSize(){
+  screenH = window.screen.height
+  screenW = window.screen.width;
+  orientation = (screenW>screenH ?"portrait":"landscape")
+  var legendTranslateX = (orientation =="landscape")?550:100;
+  var legendTranslateY = (orientation =="landscape")?150:100;
+  legendTransformByScreenSize = ((orientation=="landscape")?"translate(550,150) scale(1)":"translate(350,200) scale(0.8)")
+  console.log("width: ",screenW)
+
+}
+windowSize();
+window.addEventListener("resize",windowSize());
+
+
+
 const EDUCATION_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json';
 
 const COUNTY_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
 
-var width = window.innerWidth*1.08;
-var height = window.innerHeight*1.08;
-const w = window.innerHeight;
-const h = window.innerWidth;
-console.log("w: "+w+" h: "+h)
+const w = window.innerHeight*0.8;
+const h = window.innerWidth*0.8;
+var orientation;
+var screenH;
+var screenW;
+var legendTransformByScreenSize;
+
+
+
+
 var tooltip=d3.select(".choro")
   .append("div")
   .attr("id","tooltip")
@@ -27,9 +47,9 @@ var tooltip=d3.select(".choro")
 
 var svgBox = d3.select(".choro")
   .append("svg")
-  .attr("width",width)
-  .attr("height",height);
-
+  .attr("preserveAspectRatio", "xMinYMin meet")
+   .attr("viewBox", "0 0 "+screenW+" "+screenH+"")
+   .classed("svg-content", true);
 
 
 
@@ -37,16 +57,16 @@ svgBox.append("text")
   .attr("id","title")
   .text("United States Educational Attainment")
   .attr("color","blue")
-  .attr("x",150)
-  .attr("y",80)
-  .style("font-size","1.5em");
+  .attr("x",40)
+  .attr("y",40)
+  .style("font-size","20px");
 
 svgBox.append("text")
   .attr("id","description")
   .text("Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)")
-  .attr("x",240)
-  .attr("y",120)
-  .style("font-size", "0.5em")
+  .attr("x",40)
+  .attr("y",70)
+  .style("font-size", "10px")
 
 // var tooltip = svgBox.append("div")
 //   .attr("class","tooltip")
@@ -79,7 +99,7 @@ function ready(e,us,education){
 
   var x_scale = d3.scaleLinear()
   .domain([minBach,maxBach])
-  .rangeRound([500,850])
+  .rangeRound([414,736])
 
   var color_scale = d3.scaleThreshold()
   .domain(d3.range(minBach,maxBach,(maxBach-minBach)/10))
@@ -107,13 +127,14 @@ var colorFunc =
       return color_scale[0]
     }
   }
-  console.log(window.innerWidth*0.6)
-  var legendTranslateX = window.innerWidth*0.58;
-  var legendTranslateY = 100
+
+  //var legendTransformByScreenSize = ((orientation=="landscape")?"translate(550,150) scale(1)":"translate(350,200) scale(0.8)")
+
+
   svgBox.append('g')
     .attr("class","legendQuant")
     .attr("id","legend")
-    .attr("transform","translate("+legendTranslateX+","+legendTranslateY+")")
+    .attr("transform",legendTransformByScreenSize)
 
 
       //   //
@@ -129,10 +150,14 @@ var colorFunc =
 
 
 
-
+//screen is wide
+//
+//
+let mapTransformByScreenSize = ((orientation=="landscape")?"translate(110,110) scale(0.4)":"translate(50,150) scale(0.4)")
+//mapTransformByScreenSize = "translate("+100+","+100+") scale(0.4)"
   //draw map
   svgBox.append('g')
-    .attr("transform","translate(30,210) scale(0.8)")
+    .attr("transform",mapTransformByScreenSize)
 
     .attr('class','counties')
     .selectAll("path")
@@ -159,14 +184,13 @@ var colorFunc =
         return obj.fips === d.id;
       });
 
-      console.log(exists[0].area_name, exists[0].bachelorsOrHigher)
 
 
       tooltip
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)
-        .style("left",event.offsetX-80+"px")
-        .style("top",event.offsetY-80+"px")
+        .style("left",event.offsetX-40+"px")
+        .style("top",event.offsetY-40+"px")
         .style("border", "10px "+ color_scale(exists[0].bachelorsOrHigher)+ " solid")
         .html(exists[0].area_name+": "+exists[0].bachelorsOrHigher+"%")
       })
@@ -180,7 +204,7 @@ var colorFunc =
     .datum(topojson.mesh(us, us.objects.states, function(border1, border2) { return border1 !== border2; }))
     .attr("class", "states")
     .attr("d", path)
-    .attr("transform","translate(30,210) scale(0.8)")
+    .attr("transform",mapTransformByScreenSize)
 
 
 }

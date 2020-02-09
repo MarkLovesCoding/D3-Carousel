@@ -4,9 +4,10 @@
   "description": "d3-portfolio-showcase",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js /css/style.css ./views/index.html",
-    "ui": "browser-sync start dev --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify",
-    "build-css": "node-sass --include-path scss public/scss/style.scss public/css/style.css"
+    "watch-code": "nodemon ./index.js public/css/style.css ./views/index.html",
+    "watch-css": "node-sass -w --include-path scss public/scss/ -o public/css/",
+    "start":  "npm-run-all -p -r watch-css watch-code"
+
   },
   "keywords": [
     "d3"
