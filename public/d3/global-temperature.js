@@ -79,9 +79,10 @@ d3.json(url, function(error, data) {
   const svgBox = d3
     .select(".heatMap")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .attr("transform","translate(50,0)")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 "+len+" "+len+"")
+  //  .attr("transform","translate(50,0)")
+    .classed("svg-content", true)
     .call(tooltip);
 
 
@@ -219,18 +220,18 @@ d3.json(url, function(error, data) {
   svgBox
     .append("text")
     .attr("id", "title")
-    .attr("x", 200)
+    .attr("x", 50)
     .attr("y", 42)
-    .style("font-size", "1.8rem")
+    .style("font-size", "1rem")
     .text("Monthly Global Land-Surface Temperature");
 
   //DESCRIPTION
   svgBox
     .append("text")
     .attr("id", "description")
-    .attr("x", 200)
+    .attr("x", 50)
     .attr("y", 65)
-    .style("font-size", "1.1rem")
+    .style("font-size", "0.6rem")
     .html(
       firstYear +
         " - " +
