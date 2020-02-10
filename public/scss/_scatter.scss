@@ -1,24 +1,30 @@
 .dot {
   selection: cursor;
 }
-// body {
-//   background: rgba(10, 10, 10, 1);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: black;
-//   font-size: 2em;
-//   height: 100%;
-//   width: 100%;
-//   margin-top: 40px;
-// }
+body {
+  // background: rgba(10, 10, 10, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // color: black;
+  // font-size: 2em;
+  // // height: 100%;
+  // // width: 100%;
+  // margin-top: 40px;
+}
 .scatterPlot {
   position: absolute;
+  min-height:270px;
+
+   width:90%;
+   height:90%;
+
 
   background-color: rgba(255, 255, 255, 0.66);
   border-radius: 5px;
 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+
 }
 
 #containerScatter {
@@ -31,7 +37,7 @@
    max-height:680px;
    width:80vw;
    max-width:1000px;
-  background: url("//unsplash.it/810/700");
+//  background:url("//unsplash.it/1000/680");
   background: url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");
   position: relative;
   box-shadow: inset 0px 0px 15px black;
@@ -44,21 +50,21 @@
   z-index:4
 } */
 
-@keyframes pulse {
-  50% {
-    opacity: 0.4;
-  }
-}
-.dot {
-  stroke: #000;
-  opacity: 0.85;
-}
-.dot:hover {
-  animation: pulse 700ms infinite;
-  stroke-width: 2;
-}
+// @keyframes pulse {
+//   50% {
+//     opacity: 0.4;
+//   }
+// }
+// .dot {
+//   stroke: #000;
+//   opacity: 0.85;
+// }
+// .dot:hover {
+//   animation: pulse 700ms infinite;
+//   stroke-width: 2;
+// }
 
-#tooltip {
+#tooltipScatter {
   font-size: 0.8rem;
   border-radius: 6px;
   background-color: lightgrey;
@@ -66,6 +72,6 @@
   width: auto;
   height: auto;
   padding: 5px;
-  position: absolute;
+//  position: absolute;
   z-index: 5;
 }

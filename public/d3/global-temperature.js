@@ -63,8 +63,8 @@ d3.json(url, function(error, data) {
   const variance = data.monthlyVariance.map(d => d.variance);
   console.log(variance[0])
   //TOOLTIP using d3-tip
-  var tooltip = d3.tip()
-    .attr("id", "tooltip")
+  var tooltipHeatmap = d3.tip()
+    .attr("id", "tooltipHeatmap")
     // .style("opacity",0)
     .style("transition", "opacity 300ms ease-out")
     .html(d => d)
@@ -76,14 +76,16 @@ d3.json(url, function(error, data) {
   //
 
   //DRAW MAIN GRAPH AREA
-  const svgBox = d3
+  const svgBoxHeatMap = d3
     .select(".heatMap")
     .append("svg")
+    // .attr("width","500px")
+    // .attr("height","340px")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 "+len+" "+len+"")
+    .attr("viewBox", "0 0 "+500+" "+340+"")
   //  .attr("transform","translate(50,0)")
     .classed("svg-content", true)
-    .call(tooltip);
+    .call(tooltipHeatmap);
 
 
   //Y-AXIS SCALE
@@ -129,7 +131,7 @@ d3.json(url, function(error, data) {
 
   //DRAW Y-AXIS
   //
-  svgBox
+  svgBoxHeatMap
     .append("g")
     .attr("class", "y-axis")
     .attr("id", "y-axis")
@@ -141,7 +143,7 @@ d3.json(url, function(error, data) {
 
 
   //DRAW X-AXIS
-  svgBox
+  svgBoxHeatMap
     .append("g")
     .attr("class", "x-axis")
     .attr("id", "x-axis")
@@ -171,7 +173,7 @@ d3.json(url, function(error, data) {
   console.log(data.monthlyVariance[0])
 
   //DRAW GRAPH
-  svgBox
+  svgBoxHeatMap
     .append("g")
     .selectAll("rect")
     .data(data.monthlyVariance)
@@ -209,15 +211,15 @@ d3.json(url, function(error, data) {
         "&#8451" +
         "</span>";
 
-      tooltip
+      tooltipHeatmap
         .attr("data-year", d.year)
         .style("border", "5px " + quantColors(d.variance) + " solid")
         .show(htmlString);
     })
-    .on("mouseout", tooltip.hide);
+    .on("mouseout", tooltipHeatmap.hide);
 
   //TITLE
-  svgBox
+  svgBoxHeatMap
     .append("text")
     .attr("id", "title")
     .attr("x", 50)
@@ -226,7 +228,7 @@ d3.json(url, function(error, data) {
     .text("Monthly Global Land-Surface Temperature");
 
   //DESCRIPTION
-  svgBox
+  svgBoxHeatMap
     .append("text")
     .attr("id", "description")
     .attr("x", 50)
@@ -267,11 +269,11 @@ d3.json(url, function(error, data) {
     .tickFormat(d3.format(".1f"));
 console.log(legendAxis)
   //PLACE LEGEND
-  var legend = svgBox
+  var legend = svgBoxHeatMap
     .append("g")
     .classed("legend", true)
     .attr("id", "legend")
-    .attr("transform", "translate(180,680)");
+    .attr("transform", "translate(80,80)");
 
   //DRAW LEGEND
   legend

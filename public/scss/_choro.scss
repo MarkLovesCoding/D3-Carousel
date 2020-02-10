@@ -46,8 +46,10 @@
     display: inline-block;
     position: relative;
     width: 100%;
+    max-width:1000px;
     height:100%;
-     padding:5%;
+    max-height:680px;
+    // padding:5%;
     vertical-align: top;
     overflow: hidden;
 }
@@ -64,27 +66,31 @@
 //
 .choro{
   position:absolute;
-  //  max-width:100%;
-  //  max-height:92%;
+     width:90%;
+     height:90%;
   background-color:rgba(230,230,240,0.85);
+  background-attachment:fixed;
   border-radius:5px;
 //  margin:50px;
   box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.7)
+
 }
 
 #containerChoro{
   align-items:center;
   justify-content:center;
-  border-radius:0px;
+  border-radius:5px;
   display:flex;
-  min-height:300px;
+  //min-height:300px;
+
+
    height:54vw;
-   max-height:680px;
+   max-height:680px ;
    width:80vw;
    max-width:1000px;
 
 
-   background:url("//unsplash.it/1100/1000");
+   background:url("//unsplash.it/1000/680");
 /*   background:url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");  */
   position:relative;
   box-shadow:inset 0px 0px 15px 2px black;
@@ -100,13 +106,13 @@
   fill: none;
   stroke: #fff;
   stroke-linejoin: round;
+
 }
 
-#tooltip{
-  position:absolute;
+#tooltipChoro{
+  //position:absolute;
   font-size:0.5em;
   color:black;
-
   padding:0.5em;
   background-color:rgba(220,220,200,0.9);
   z-index:500;
@@ -125,10 +131,11 @@
   stroke:rgba(250,150,110,1); */
   z-index:100;
   animation: pulse 600ms ease-out infinite;
+
 }
 .caption{
   z-index:400;
 }
 .legendQuant{
-  font-size:0.48em;
+  font-size:0.6em;
 }

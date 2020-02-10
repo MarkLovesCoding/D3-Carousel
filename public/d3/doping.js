@@ -5,33 +5,33 @@ const height = 500;
 //   .attr("id","tooltip")
 //   .style(opacity,0);
 
-const svgBox = d3
+const svgBoxScatter = d3
   .select(".scatterPlot")
   .append("svg")
   // .attr("width", width + 200)
   // .attr("height", height + 250)
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 "+len+" "+len+"")
+  .attr("viewBox", "0 0 "+500+" "+340+"")
 //  .attr("transform","translate(50,0)")
   .classed("svg-content", true)
-  .append("g")
-  .attr("transform", "translate(80,60)");
+  // .append("g")
+  // .attr("transform", "translate(80,60)");
 
-const tooltip = d3
+const tooltipScatter = d3
   .select(".scatterPlot")
   .append("div")
-  .attr("id", "tooltip")
+  .attr("id", "tooltipScatter")
   .style("opacity", 0)
   .style("transition", "opacity 400ms ease");
 
 //Create Scales
-const x_scale = d3.scaleLinear().range([0, width - 200]);
-const y_scale = d3.scaleTime().range([0, height - 100]);
-
+const x_scale = d3.scaleLinear().range([0, 500]);
+const y_scale = d3.scaleTime().range([0, 340]);
+console.log("x_scale:         ",x_scale)
 const x_axis = d3
   .axisBottom()
   .scale(x_scale)
-  .tickFormat(d3.format("d"));
+  .tickFormat(d3.format("d"))
 
 const y_format = d3.timeFormat("%M:%S");
 const y_axis = d3
@@ -39,12 +39,12 @@ const y_axis = d3
   .scale(y_scale)
   .tickFormat(y_format);
 
-//      var xAxisGroup = svgBox.append('g')
+//      var xAxisGroup = svgBoxScatter.append('g')
 //      .call(x_axis)
 //      .attr('id', 'x-axis')
 //      .attr('transform', 'translate(80, 430)');
 
-//      var yAxisGroup = svgBox.append('g')
+//      var yAxisGroup = svgBoxScatter.append('g')
 //      .call(y_axis)
 //      .attr('id', 'y-axis')
 //      .attr('transform', 'translate(80, 30)');
@@ -69,14 +69,14 @@ d3.json(
     //set y_axis domain based on range of Time in d scaled to height range
     y_scale.domain(d3.extent(data, d => d.Time));
 
-    //append groups to svgBox element
+    //append groups to svgBoxScatter element
 
     //x-axis-group
-    svgBox
+    svgBoxScatter
       .append("g")
       .attr("class", "x-axis")
       .attr("id", "x-axis")
-      .attr("transform", "translate( 0,400)")
+      .attr("transform", "translate( 50,306) scale(0.8)")
       .call(x_axis)
       .append("text")
       .attr("class", "x-axis-title")
@@ -86,64 +86,66 @@ d3.json(
       .text("Year");
 
     //y-axis-group
-    svgBox
+    svgBoxScatter
       .append("g")
       .attr("class", "y-axis")
       .attr("id", "y-axis")
+      .attr("transform", "translate(50,34) scale(0.8)")
       .call(y_axis)
       .append("text")
       .attr("class", "y-axis-title")
-      .attr("transform", "rotate(90)")
       .attr("y", 6)
       .attr("dy", "0.5em")
       .style("text-anchor", "end");
 
     //y-axis-label
-    svgBox
+    svgBoxScatter
       .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("x", -160)
-      .attr("y", -44)
+      .attr("x", -20)
+      .attr("y", -10)
       .style("font-size", 18)
       .text("Time in Minutes");
 
     //main-title
-    svgBox
+    svgBoxScatter
       .append("text")
       .attr("id", "title")
-      .attr("x", 250)
-      .attr("y", -22)
+      .attr("x", 270)
+      .attr("y", 30)
       .style("font-size", "0.8em")
       .text("Doping in Professional Bicycle Racing");
 
-    svgBox
+    svgBoxScatter
       .append("text")
       .attr("id", "title")
-      .attr("x", 412)
-      .attr("y", 5)
+      .attr("x", 350)
+      .attr("y", 55)
       .style("font-size", "0.57em")
       .text("35 Fastest times up Alpe d'Huez");
 
-    svgBox
+    svgBoxScatter
       .selectAll(".dot")
       .data(data)
       .enter()
       .append("circle")
       .attr("class", "dot")
-      .attr("cx", d => x_scale(d.Year))
-      .attr("cy", d => y_scale(d.Time))
+      .attr("cx", d => x_scale(d.Year)+65)
+      .attr("cy", d => y_scale(d.Time)+40)
       .attr("r", 7)
       .attr("data-xvalue", d => d.Year)
       .attr("data-yvalue", d => d.Time.toISOString())
+      .attr("transform","scale(0.8)")
       .style("fill", d => {
         return color(d.Doping != "");
       })
       .on("mouseover", d => {
-        // svgBox.select(d.event).style("fill", (d)=>{
+        // svgBoxScatter.select(d.event).style("fill", (d)=>{
         //   return "red";
         //  })
+        console.log(Number(d.Time)/60000)
 
-        tooltip
+        tooltipScatter
           .style("opacity", 0.9)
           .attr("data-year", d.Year)
           .html(
@@ -154,14 +156,14 @@ d3.json(
               d.Year +
               (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
-          .style("left", d3.event.pageX - 90 + "px")
-          .style("top", d3.event.pageY - 90 + "px");
+          .style("left", event.pageX - 20 + "px")
+          .style("top", event.pageY - 20 + "px");
       })
       .on("mouseout", d => {
-        tooltip.style("opacity", 0);
+        tooltipScatter.style("opacity", 0);
       });
 
-    const legend = svgBox
+    const legend = svgBoxScatter
       .selectAll("legend")
       .data(color.domain())
       .enter()
@@ -169,21 +171,21 @@ d3.json(
       .attr("id", "legend")
       .attr("class", "legend")
       .attr("transform", (d, i) => {
-        return "translate(50," + i * 28 + ")";
+        return "translate(50," + i * 28 + "), scale(0.8)";
       });
 
     legend
       .append("rect")
-      .attr("x", 575)
-      .attr("y", 30)
+      .attr("x", 515)
+      .attr("y", 100)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", color);
 
     legend
       .append("text")
-      .attr("x", 560)
-      .attr("y", 40)
+      .attr("x",495)
+      .attr("y", 110)
       .attr("dy", "0.35em")
       .style("font-size", "12")
       .style("text-anchor", "end")

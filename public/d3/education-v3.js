@@ -35,9 +35,9 @@ window.addEventListener("resize",windowSize());
 const EDUCATION_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json';
 const COUNTY_DATA = 'https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json';
 
-var tooltip=d3.select(".choro")
+var tooltipChoro=d3.select(".choro")
   .append("div")
-  .attr("id","tooltip")
+  .attr("id","tooltipChoro")
   .style("opacity",0)
   .style("transition","opacity 200ms ease-out")
 
@@ -50,7 +50,7 @@ var tooltip=d3.select(".choro")
 //   .html((d) =>  d);
 
 
-var svgBox = d3.select(".choro")
+var svgBoxChoro = d3.select(".choro")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
    .attr("viewBox", "0 0 "+500+" "+340+"")
@@ -58,7 +58,7 @@ var svgBox = d3.select(".choro")
 
 
 
-svgBox.append("text")
+svgBoxChoro.append("text")
   .attr("id","title")
   .text("United States Educational Attainment")
   .attr("color","blue")
@@ -66,7 +66,7 @@ svgBox.append("text")
   .attr("y",40)
   .style("font-size","20px");
 
-svgBox.append("text")
+svgBoxChoro.append("text")
   .attr("id","description")
   .text("Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)")
   .attr("x",40)
@@ -136,7 +136,7 @@ var colorFunc =
   //var legendTransformByScreenSize = ((orientation=="landscape")?"translate(550,150) scale(1)":"translate(350,200) scale(0.8)")
 
 
-  svgBox.append('g')
+  svgBoxChoro.append('g')
     .attr("class","legendQuant")
     .attr("id","legend")
     .attr("transform",legendTransformByScreenSize)
@@ -150,8 +150,9 @@ var colorFunc =
     .scale(color_scale)
     .ascending(true)
 
-    svgBox.select(".legendQuant")
+    svgBoxChoro.select(".legendQuant")
     .call(legend);
+
 
 
 
@@ -164,7 +165,7 @@ let mapTransformByScreenSize =
     "translate(40,80) scale(0.4)" )
 //mapTransformByScreenSize = "translate("+100+","+100+") scale(0.4)"
   //draw map
-  svgBox.append('g')
+  svgBoxChoro.append('g')
     .attr("transform",mapTransformByScreenSize)
 
     .attr('class','counties')
@@ -194,21 +195,21 @@ let mapTransformByScreenSize =
 
 
 
-      tooltip
+      tooltipChoro
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)
-        .style("left",event.offsetX-40+"px")
-        .style("top",event.offsetY-40+"px")
+        .style("left",event.clientX-10+"px")
+        .style("top",event.clientY-10+"px" )
         .style("border", "10px "+ color_scale(exists[0].bachelorsOrHigher)+ " solid")
         .html(exists[0].area_name+": "+exists[0].bachelorsOrHigher+"%")
       })
      .on("mouseout",()=>{
- tooltip
+ tooltipChoro
   .style("opacity",0)});
 
 
   //state borders
-  svgBox.append("path")
+  svgBoxChoro.append("path")
     .datum(topojson.mesh(us, us.objects.states, function(border1, border2) { return border1 !== border2; }))
     .attr("class", "states")
     .attr("d", path)
