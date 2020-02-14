@@ -99,18 +99,18 @@
 
 
 .counties {
-  fill: none;
+  fill: none;  cursor:default;
 }
 
 .states {
   fill: none;
   stroke: #fff;
   stroke-linejoin: round;
-
+  cursor:default;
 }
 
 #tooltipChoro{
-  //position:absolute;
+  position:absolute;
   font-size:0.5em;
   color:black;
   padding:0.5em;

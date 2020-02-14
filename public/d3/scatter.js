@@ -5,6 +5,13 @@ const height = 500;
 //   .attr("id","tooltip")
 //   .style(opacity,0);
 
+const tooltipScatter = d3
+  .select(".scatterPlot")
+  .append("div")
+  .attr("id", "tooltipScatter")
+  .style("opacity", 0)
+  .style("transition", "opacity 400ms ease");
+
 const svgBoxScatter = d3
   .select(".scatterPlot")
   .append("svg")
@@ -16,14 +23,14 @@ const svgBoxScatter = d3
   .classed("svg-content", true)
   // .append("g")
   // .attr("transform", "translate(80,60)");
-
-const tooltipScatter = d3
-  .select(".scatterPlot")
-  .append("div")
-  .attr("id", "tooltipScatter")
-  .style("opacity", 0)
-  .style("transition", "opacity 400ms ease");
-
+//
+// const tooltipScatter = d3
+//   .select(".scatterPlot")
+//   .append("div")
+//   .attr("id", "tooltipScatter")
+//   .style("opacity", 0)
+//   .style("transition", "opacity 400ms ease");
+//
 //Create Scales
 const x_scale = d3.scaleLinear().range([0, 500]);
 const y_scale = d3.scaleTime().range([0, 340]);
@@ -111,7 +118,7 @@ d3.json(
     svgBoxScatter
       .append("text")
       .attr("id", "title")
-      .attr("x", 270)
+      .attr("x", 216)
       .attr("y", 30)
       .style("font-size", "0.8em")
       .text("Doping in Professional Bicycle Racing");
@@ -119,7 +126,7 @@ d3.json(
     svgBoxScatter
       .append("text")
       .attr("id", "title")
-      .attr("x", 350)
+      .attr("x", 250)
       .attr("y", 55)
       .style("font-size", "0.57em")
       .text("35 Fastest times up Alpe d'Huez");
@@ -144,7 +151,7 @@ d3.json(
         //   return "red";
         //  })
         console.log(Number(d.Time)/60000)
-
+console.log(d.Name," ",event)
         tooltipScatter
           .style("opacity", 0.9)
           .attr("data-year", d.Year)
@@ -156,8 +163,8 @@ d3.json(
               d.Year +
               (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
-          .style("left", event.pageX - 20 + "px")
-          .style("top", event.pageY - 20 + "px");
+          .style("left", event.offsetX + "px" )
+          .style("top", event.offsetY + "px");
       })
       .on("mouseout", d => {
         tooltipScatter.style("opacity", 0);

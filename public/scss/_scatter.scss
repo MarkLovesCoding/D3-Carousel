@@ -1,5 +1,11 @@
 .dot {
   selection: cursor;
+//  cursor:pointer !important;
+}
+circle{
+  margin:5px;
+    cursor:pointer !important;
+
 }
 body {
   // background: rgba(10, 10, 10, 1);
@@ -41,7 +47,20 @@ body {
   background: url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");
   position: relative;
   box-shadow: inset 0px 0px 15px black;
+  // ::after{
+  //   content:'';
+  //   position:absolute;
+  //   top:0;
+  //   left:0;
+  //   width:100%;
+  //   height:100%;
+  //   border-radius:inherit;
+  //     background: url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");
+  //     background-attachment:fixed;
+  //
+  // }
 }
+
 /* #barGraph{
   color:red;
   width:100px;
@@ -67,11 +86,11 @@ body {
 #tooltipScatter {
   font-size: 0.8rem;
   border-radius: 6px;
-  background-color: lightgrey;
+  background-color: grey;
   border: 1px solid;
-  width: auto;
-  height: auto;
+  width:100px;
+  height: 3em;
   padding: 5px;
-//  position: absolute;
+  position: absolute;
   z-index: 5;
 }

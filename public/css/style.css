@@ -324,8 +324,7 @@ textarea {
 html,
 body {
   height: 100%;
-  background: #020024;
-  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); }
+  background: linear-gradient(225deg, #001424 0%, #403d3d 0%, #2d3030 9%, #101011 100%); }
 
 ul {
   list-style: none;
@@ -430,14 +429,17 @@ img {
   box-shadow: inset 0px 0px 15px 2px black; }
 
 .counties {
-  fill: none; }
+  fill: none;
+  cursor: default; }
 
 .states {
   fill: none;
   stroke: #fff;
-  stroke-linejoin: round; }
+  stroke-linejoin: round;
+  cursor: default; }
 
 #tooltipChoro {
+  position: absolute;
   font-size: 0.5em;
   color: black;
   padding: 0.5em;
@@ -525,6 +527,10 @@ svg {
 .dot {
   selection: cursor; }
 
+circle {
+  margin: 5px;
+  cursor: pointer !important; }
+
 body {
   display: flex;
   align-items: center;
@@ -563,9 +569,10 @@ body {
 #tooltipScatter {
   font-size: 0.8rem;
   border-radius: 6px;
-  background-color: lightgrey;
+  background-color: grey;
   border: 1px solid;
-  width: auto;
-  height: auto;
+  width: 100px;
+  height: 3em;
   padding: 5px;
+  position: absolute;
   z-index: 5; }

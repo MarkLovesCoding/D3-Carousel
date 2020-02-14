@@ -7,6 +7,7 @@ d3.json(url, function(error, data) {
   //HANDLE ERRORS
   if (error) throw error;
   //INIT VARIABLES
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&\n&&\n&&&&&&&/n&&")
   const months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   var year;
   const firstYear = data.monthlyVariance[0].year;
@@ -79,8 +80,8 @@ d3.json(url, function(error, data) {
   const svgBoxHeatMap = d3
     .select(".heatMap")
     .append("svg")
-    // .attr("width","500px")
-    // .attr("height","340px")
+     // .attr("width",500)
+     // .attr("height",340)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 "+500+" "+340+"")
   //  .attr("transform","translate(50,0)")
@@ -127,7 +128,7 @@ d3.json(url, function(error, data) {
     })
 
     .tickSize(12, 1);
-
+console.log("HI")
 
   //DRAW Y-AXIS
   //
@@ -171,7 +172,7 @@ d3.json(url, function(error, data) {
   console.log(minTemp, maxTemp)
   console.log(quantColors)
   console.log(data.monthlyVariance[0])
-
+console.log("TEST")
   //DRAW GRAPH
   svgBoxHeatMap
     .append("g")
@@ -194,7 +195,7 @@ d3.json(url, function(error, data) {
     .on("mouseover", d => {
       // create date object so Month can be displayed as word instead of index
       var date = new Date(d.year, d.month - 1);
-
+      console.log("date")
       //TOOLTIP TEXTTITLE
       var htmlString =
         "<span>" +

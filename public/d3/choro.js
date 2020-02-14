@@ -198,8 +198,8 @@ let mapTransformByScreenSize =
       tooltipChoro
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)
-        .style("left",event.clientX-10+"px")
-        .style("top",event.clientY-10+"px" )
+        .style("left",event.offsetX-10+"px")
+        .style("top",event.offsetY-10+"px" )
         .style("border", "10px "+ color_scale(exists[0].bachelorsOrHigher)+ " solid")
         .html(exists[0].area_name+": "+exists[0].bachelorsOrHigher+"%")
       })
