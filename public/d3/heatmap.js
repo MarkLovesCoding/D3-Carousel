@@ -1,26 +1,25 @@
 //DATA
-var url =
-  "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json";
+var url =  "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json";
 
 //D3 FUNCTION
 d3.json(url, function(error, data) {
   //HANDLE ERRORS
   if (error) throw error;
   //INIT VARIABLES
-  console.log("&&&&&&&&&&&&&&&&&&&&&&&\n&&\n&&&&&&&/n&&")
+
   const months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   var year;
   const firstYear = data.monthlyVariance[0].year;
   const lastYear = data.monthlyVariance[data.monthlyVariance.length - 1].year;
-  console.log(firstYear, lastYear);
-  var width = window.innerWidth;
-  var height = window.innerHeight;
+
+  var width = 500
+  var height = 340
   var len = (width>height?width:height)
   var margin = {
-    top: 100,
-    bottom: 200,
-    left: 100,
-    right: 100
+    top: 50,
+    bottom: 50,
+    left: 60,
+    right: 55
   };
   var fontSize = "1em";
 
@@ -62,11 +61,11 @@ d3.json(url, function(error, data) {
   ];
   const col2 = blue.concat(red);
   const variance = data.monthlyVariance.map(d => d.variance);
-  console.log(variance[0])
+
   //TOOLTIP using d3-tip
   var tooltipHeatmap = d3.tip()
     .attr("id", "tooltipHeatmap")
-    // .style("opacity",0)
+    .style("opacity",0)
     .style("transition", "opacity 300ms ease-out")
     .html(d => d)
     .direction("n")
@@ -128,7 +127,7 @@ d3.json(url, function(error, data) {
     })
 
     .tickSize(12, 1);
-console.log("HI")
+
 
   //DRAW Y-AXIS
   //
@@ -138,7 +137,7 @@ console.log("HI")
     .attr("id", "y-axis")
     .attr(
       "transform",
-      "translate(" + margin.left + ", " + margin.top + ")"
+      "translate(" + (margin.left-1) + ", " + (margin.top ) + ") scale(0.7)"
     )
     .call(y_axis);
 
@@ -150,7 +149,7 @@ console.log("HI")
     .attr("id", "x-axis")
     .attr(
       "transform",
-      "translate(" +(0 + margin.left) + "," + (height + margin.top ) + ")"
+      "translate(" +(margin.left-1) + "," + (height - margin.bottom -2) + ") scale(0.7)"
     )
     .call(x_axis)
   .selectAll("text")
@@ -160,19 +159,13 @@ console.log("HI")
     .attr("transform","rotate(300)")
   .style("text-anchor","end");
 
-  console.log("col2",col2)
   const baseTemp = data.baseTemperature;
   const minTemp = baseTemp + Math.min.apply(Math, variance);
   const maxTemp = baseTemp + Math.max.apply(Math, variance);
   const quantColors = d3.scaleQuantize()
     .domain([minTemp - baseTemp, maxTemp - baseTemp])
     .range(col2);
-  console.log(data.monthlyVariance[0].variance)
-  console.log(baseTemp)
-  console.log(minTemp, maxTemp)
-  console.log(quantColors)
-  console.log(data.monthlyVariance[0])
-console.log("TEST")
+
   //DRAW GRAPH
   svgBoxHeatMap
     .append("g")
@@ -181,7 +174,7 @@ console.log("TEST")
     .enter()
     .append("rect")
     .attr("class", "cell")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ") scale(0.7)")
     .attr("data-month", d => d.month - 1)
     .attr("data-year", d => d.year)
     .attr("data-temp", d => data.baseTemperature + d.variance)
@@ -191,11 +184,11 @@ console.log("TEST")
     .attr("x", (d, i) => x_scale(d.year))
     .attr("y", (d, i) => y_scale(d.month - 1))
     .attr("width", (d, i) => 2||x_scale.range(d.year))
-    .attr("height", (d, i) =>40|| y_scale.range(d.month - 1))
+    .attr("height", (d, i) =>28|| y_scale.range(d.month - 1))
     .on("mouseover", d => {
       // create date object so Month can be displayed as word instead of index
       var date = new Date(d.year, d.month - 1);
-      console.log("date")
+
       //TOOLTIP TEXTTITLE
       var htmlString =
         "<span>" +
@@ -224,7 +217,7 @@ console.log("TEST")
     .append("text")
     .attr("id", "title")
     .attr("x", 50)
-    .attr("y", 42)
+    .attr("y", 22)
     .style("font-size", "1rem")
     .text("Monthly Global Land-Surface Temperature");
 
@@ -233,8 +226,8 @@ console.log("TEST")
     .append("text")
     .attr("id", "description")
     .attr("x", 50)
-    .attr("y", 65)
-    .style("font-size", "0.6rem")
+    .attr("y", 35)
+    .style("font-size", "0.5rem")
     .html(
       firstYear +
         " - " +
@@ -257,24 +250,23 @@ console.log("TEST")
     legendDomain.push(minTemp + i * (tempRange / legendLength));
   }
 
-  console.log("here",legendDomain)
+
   //SCALE LEGEND
   var legendScale = d3.scaleLinear()
     .domain([minTemp, maxTemp])
     .range([0, 640]);
-  console.log("here")
+
   //LEGEND AXIS ATTRIBUTES
   var legendAxis = d3.axisBottom(legendScale)
     .tickSize(10)
     .tickValues(legendDomain)
     .tickFormat(d3.format(".1f"));
-console.log(legendAxis)
   //PLACE LEGEND
   var legend = svgBoxHeatMap
     .append("g")
     .classed("legend", true)
     .attr("id", "legend")
-    .attr("transform", "translate(80,80)");
+    .attr("transform", "translate(340,220) rotate(270)");
 
   //DRAW LEGEND
   legend
@@ -296,23 +288,19 @@ console.log(legendAxis)
     .enter()
     .append("rect")
     .style("fill", function(d, i) {
-   console.log(quantColors(d[0]))
+
       return quantColors(d[0]);
     })
     .style("opacity", "0.9")
-    .attr({
-      x: function(d, i) {
-        return i * 40;
-      },
-      y: 250,
-      width: 40,
-      height: 25
-    });
+    .attr("x", function(d, i) {  return i * 10;  })
+    .attr("y", 100)
+    .attr("width", 10)
+    .attr("height", 10);
 
   //DRAW LEGEND AXIS
   legend.enter()
     .append("g")
-    .attr("transform", "translate(0,25)")
+    .attr("transform", "translate(0,0) " )
     .call(legendAxis);
 
 });
