@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto');
 .cell{
   selection:cursor;
@@ -9,9 +10,9 @@
 
 .heatMap{
   position:absolute;
-  // width:90%;
-  // height:90%;
-  background-color:rgba(255,255,255,0.8);
+   width:90%;
+   height:90%;
+  background-color:rgba(255,255,255,0.95);
   border-radius:5px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
   font-family:"Roboto"
@@ -20,11 +21,12 @@
   align-items:center;
   justify-content:center;
   display:flex;
-  min-height:300px;
+  // min-height:300px;
    height:54vw;
    max-height:680px;
    width:80vw;
    max-width:1000px;
+   border-radius:5px;
   background:url("//unsplash.it/1000/680");
   // margin-left:auto;
   // margin-right:auto;
@@ -54,6 +56,7 @@
   box-shadow:1px 1px 8px rgba(0,0,0,0.9);
   text-shadow:1px 2px 4px black;
     font-family:"Merriweather";
+
 }
 
 

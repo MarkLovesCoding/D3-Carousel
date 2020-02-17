@@ -257,7 +257,7 @@ d3.json(url, function(error, data) {
     .range([0, 640]);
 
   //LEGEND AXIS ATTRIBUTES
-  var legendAxis = d3.axisBottom(legendScale)
+  var legendAxis = d3.axisLeft(legendScale)
     .tickSize(10)
     .tickValues(legendDomain)
     .tickFormat(d3.format(".1f"));

@@ -22,6 +22,7 @@ function windowSize(){
     "translate(450,150) scale(0.6)" :
     "translate(400,200) scale(0.6)" )
   console.log("width: ",screenW)
+  console.log("width: ",orientation)
 
 }
 
@@ -198,8 +199,8 @@ let mapTransformByScreenSize =
       tooltipChoro
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)
-        .style("left",event.offsetX-10+"px")
-        .style("top",event.offsetY-10+"px" )
+        .style("left",event.offsetX+20+"px")
+        .style("top",event.offsetY-50+"px" )
         .style("border", "10px "+ color_scale(exists[0].bachelorsOrHigher)+ " solid")
         .html(exists[0].area_name+": "+exists[0].bachelorsOrHigher+"%")
       })

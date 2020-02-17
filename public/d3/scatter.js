@@ -34,7 +34,7 @@ const svgBoxScatter = d3
 //Create Scales
 const x_scale = d3.scaleLinear().range([0, 500]);
 const y_scale = d3.scaleTime().range([0, 340]);
-console.log("x_scale:         ",x_scale)
+//console.log("x_scale:         ",x_scale)
 const x_axis = d3
   .axisBottom()
   .scale(x_scale)
@@ -164,7 +164,7 @@ console.log(d.Name," ",event)
               (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
           .style("left", event.offsetX + "px" )
-          .style("top", event.offsetY + "px");
+          .style("top", event.offsetY -50+"px");
       })
       .on("mouseout", d => {
         tooltipScatter.style("opacity", 0);
