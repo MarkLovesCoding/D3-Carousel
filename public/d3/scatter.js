@@ -163,8 +163,9 @@ console.log(d.Name," ",event)
               d.Year +
               (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
-          .style("left", event.offsetX + "px" )
-          .style("top", event.offsetY -50+"px");
+          .style("border", "5px " + color(d.Doping != "") + " solid")
+          .style("left", event.offsetX-60 + "px" )
+          .style("top", event.offsetY -120+"px");
       })
       .on("mouseout", d => {
         tooltipScatter.style("opacity", 0);

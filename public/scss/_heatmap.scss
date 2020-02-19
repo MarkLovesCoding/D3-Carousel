@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto');
 .cell{
   selection:cursor;
+
 }
 .cell:hover{
   stroke-width:2;
   stroke:rgba(30,30,50,1);
+
 }
 
 .heatMap{
@@ -15,7 +17,8 @@
   background-color:rgba(255,255,255,0.95);
   border-radius:5px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
-  font-family:"Roboto"
+  font-family:"Roboto";
+
 }
  #containerHeat{
   align-items:center;
@@ -32,6 +35,7 @@
   // margin-right:auto;
   position:relative;
    box-shadow: 0px 0px 15px black;
+   cursor:crosshair;
 }
 
 .cell{
@@ -46,17 +50,24 @@
 }
 
 #tooltipHeatmap{
+  position:absolute;
   background-color:rgba(80,80,80,0.85);
   font-weight:600;
   color:rgba(250,240,240,1);
   padding: 0.8em;
   z-index:2;
-  text-align:center;
+  text-align:right;
   border-radius:20px;
   box-shadow:1px 1px 8px rgba(0,0,0,0.9);
   text-shadow:1px 2px 4px black;
-    font-family:"Merriweather";
+  font-family:"Merriweather";
+  font-size:1rem;
 
+
+}
+#titleHeatMap{
+  font-weight:1000;
+  color:green;
 }
 
 
@@ -72,3 +83,6 @@ svg{
 //   width:50px;
 //   height:50px;
 // }
+.tipSmall{
+  font-size:19px;
+}

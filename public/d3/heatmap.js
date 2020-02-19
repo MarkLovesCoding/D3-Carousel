@@ -63,18 +63,26 @@ d3.json(url, function(error, data) {
   const variance = data.monthlyVariance.map(d => d.variance);
 
   //TOOLTIP using d3-tip
-  var tooltipHeatmap = d3.tip()
-    .attr("id", "tooltipHeatmap")
-    .style("opacity",0)
-    .style("transition", "opacity 300ms ease-out")
-    .html(d => d)
-    .direction("n")
-    .offset([-12, 1]);
-
+  // var tooltipHeatmap = d3.tip()
+  //   .attr("id", "tooltipHeatmap")
+  //   .style("opacity",0)
+  //   .style("transition", "opacity 300ms ease-out")
+  //   .html(d => d)
+  //   .direction("n")
+  //   .offset([-12, 1]);
+  console.log("1")
+    var tooltipHeatmap = d3.select(".heatMap")
+      .append("div")
+      .attr("id", "tooltipHeatmap")
+      .style("opacity",0)
+      .style("transition", "opacity 300ms ease-out")
+      // .html(d => d)
+      // .direction("n")
+      // .offset([-12, 1]);
   //
   ////SVGs
   //
-
+console.log("2")
   //DRAW MAIN GRAPH AREA
   const svgBoxHeatMap = d3
     .select(".heatMap")
@@ -85,7 +93,7 @@ d3.json(url, function(error, data) {
     .attr("viewBox", "0 0 "+500+" "+340+"")
   //  .attr("transform","translate(50,0)")
     .classed("svg-content", true)
-    .call(tooltipHeatmap);
+    // .call(tooltipHeatmap);
 
 
   //Y-AXIS SCALE
@@ -185,7 +193,7 @@ d3.json(url, function(error, data) {
     .attr("y", (d, i) => y_scale(d.month - 1))
     .attr("width", (d, i) => 2||x_scale.range(d.year))
     .attr("height", (d, i) =>28|| y_scale.range(d.month - 1))
-    .on("mouseover", d => {
+    .on("mousemove", d => {
       // create date object so Month can be displayed as word instead of index
       var date = new Date(d.year, d.month - 1);
 
@@ -205,38 +213,54 @@ d3.json(url, function(error, data) {
         "&#8451" +
         "</span>";
 
+var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+"px")
+
       tooltipHeatmap
         .attr("data-year", d.year)
-        .style("border", "5px " + quantColors(d.variance) + " solid")
-        .show(htmlString);
+        .style("opacity",1)
+        .style("left", event.offsetX+20+"px")
+        .style("top",event.offsetY-50+"px" )
+        .style("border", "4px " + quantColors(d.variance) + " solid")
+        .html("<span>" +
+        d3.timeFormat("%B")(date) +
+        " " +
+        d.year +
+        "</span>" +
+        "<br> <span class='tipSmall'>" + "temperature: " +
+        d3.format("+.1f")(baseTemp + d.variance) +
+        "&#8451" +
+        "</span>" +
+        "<br> <span class='tipSmall'>" + "delta: " +
+        d3.format("+.1f")(d.variance) +
+        "&#8451" +
+        "</span>");
     })
-    .on("mouseout", tooltipHeatmap.hide);
+    .on("mouseout", ()=>{
+      tooltipHeatmap
+        .style("opacity",0)
+    });
 
   //TITLE
   svgBoxHeatMap
     .append("text")
-    .attr("id", "title")
-    .attr("x", 50)
-    .attr("y", 22)
-    .style("font-size", "1rem")
-    .text("Monthly Global Land-Surface Temperature");
+    .attr("id", "titleHeatMap")
+    .attr("x", 30)
+    .attr("y", 33)
+    .style("font-size", "19px")
+    .text("Mean Global Land-Surface Temperature (1732-2015)");
 
   //DESCRIPTION
-  svgBoxHeatMap
-    .append("text")
-    .attr("id", "description")
-    .attr("x", 50)
-    .attr("y", 35)
-    .style("font-size", "0.5rem")
-    .html(
-      firstYear +
-        " - " +
-        lastYear +
-        ", " +
-        " Base Temperature: " +
-        d3.format("+.2f")(baseTemp) +
-        "&#8451"
-    );
+  // svgBoxHeatMap
+  //   .append("text")
+  //   .attr("id", "description")
+  //   .attr("x", 50)
+  //   .attr("y", 35)
+  //   .style("font-size", "12px")
+  //   .html(
+  //       "Base Temperature: " +
+  //       d3.format("+.2f")(baseTemp) +
+  //       "&#8451"
+  //   );
 
   //LEGEND
   //Follow example from https://bl.ocks.org/mbostock/4573883
@@ -257,7 +281,7 @@ d3.json(url, function(error, data) {
     .range([0, 640]);
 
   //LEGEND AXIS ATTRIBUTES
-  var legendAxis = d3.axisLeft(legendScale)
+  var legendAxis = d3.axisBottom(legendScale)
     .tickSize(10)
     .tickValues(legendDomain)
     .tickFormat(d3.format(".1f"));
