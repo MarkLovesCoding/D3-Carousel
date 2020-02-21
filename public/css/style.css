@@ -574,6 +574,11 @@ body {
   position: relative;
   box-shadow: inset 0px 0px 15px black; }
 
+.scatterToolName {
+  font-weight: 1000;
+  text-decoration: underline;
+  text-align: center; }
+
 /* #barGraph{
   color:red;
   width:100px;

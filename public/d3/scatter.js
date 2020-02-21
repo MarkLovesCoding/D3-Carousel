@@ -149,18 +149,18 @@ d3.json(
       .on("mouseover", d => {
         // svgBoxScatter.select(d.event).style("fill", (d)=>{
         //   return "red";
-        //  })
-        console.log(Number(d.Time)/60000)
-console.log(d.Name," ",event)
+
+// var dTimeparse = d3.utcParse("%M:%S");
+// var timeFormat = d3.timeFormat("%M:%S")
+// var dTime = timeFormat(d.Time)
         tooltipScatter
           .style("opacity", 0.9)
+              .style("z-index", 2000)
           .attr("data-year", d.Year)
           .html(
-            d.Name +
-              ", " +
-              d.Nationality +
-              "<br/>" +
-              d.Year +
+          "  "+d.Name +  ", " +  d.Nationality +" " +
+              "<br/>" + d.Year + ", " +
+
               (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
           .style("border", "5px " + color(d.Doping != "") + " solid")
@@ -169,6 +169,7 @@ console.log(d.Name," ",event)
       })
       .on("mouseout", d => {
         tooltipScatter.style("opacity", 0);
+        tooltipScatter.style("z-index", -1);
       });
 
     const legend = svgBoxScatter
