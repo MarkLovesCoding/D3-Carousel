@@ -17,10 +17,10 @@ function windowSize(){
   orientation = (screenW>screenH ?"portrait":"landscape")
   var legendTranslateX = (orientation =="landscape")?550:100;
   var legendTranslateY = (orientation =="landscape")?150:100;
-  legendTransformByScreenSize =
-    ( orientation == "landscape" ?
-    "translate(450,150) scale(0.6)" :
-    "translate(400,200) scale(0.6)" )
+  legendTransformByScreenSize = "translate(425,175) scale(0.6)"
+    // ( orientation == "portrait" ?
+    // "translate(450,150) scale(0.6)" :
+    // "translate(400,200) scale(0.6)" )
   console.log("width: ",screenW)
   console.log("width: ",orientation)
 

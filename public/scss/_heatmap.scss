@@ -1,10 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Fira+Sans+Extra+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto');
 .cell{
   selection:cursor;
 
 }
-.cell:hover{
+.county:hover{
   stroke-width:2;
   stroke:rgba(30,30,50,1);
 
@@ -15,7 +15,7 @@
    width:90%;
    height:90%;
   background-color:rgba(255,255,255,0.95);
-  border-radius:5px;
+  //border-radius:5px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
   font-family:"Roboto";
 
@@ -34,7 +34,7 @@
   // margin-left:auto;
   // margin-right:auto;
   position:relative;
-   box-shadow: 0px 0px 15px black;
+   box-shadow:inset 0px 0px 15px black;
    cursor:crosshair;
 }
 
@@ -66,8 +66,9 @@
 
 }
 #titleHeatMap{
-  font-weight:1000;
-  color:green;
+//  font-weight:1000;
+font-family:'Barlow Semi Condensed';
+font-family: 'Barlow Semi Condensed', ;
 }
 
 

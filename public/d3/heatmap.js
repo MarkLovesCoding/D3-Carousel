@@ -220,6 +220,7 @@ var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+
         .style("opacity",1)
         .style("left", event.offsetX+20+"px")
         .style("top",event.offsetY-50+"px" )
+        .style("z-index",5)
         .style("border", "4px " + quantColors(d.variance) + " solid")
         .html("<span>" +
         d3.timeFormat("%B")(date) +
@@ -238,6 +239,7 @@ var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+
     .on("mouseout", ()=>{
       tooltipHeatmap
         .style("opacity",0)
+        .style("z-index",0)
     });
 
   //TITLE
