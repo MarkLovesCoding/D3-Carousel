@@ -42,14 +42,6 @@ var tooltipChoro=d3.select(".choro")
   .style("opacity",0)
   .style("transition","opacity 200ms ease-out")
 
-// const tooltip = d3.tip()
-//   .attr("class","d3-tip")
-//   .attr("id","tooltip")
-//   .style("transition","opacity 300ms ease-out")
-//   .direction('s')
-//   .offset([-100,-100])
-//   .html((d) =>  d);
-
 
 var svgBoxChoro = d3.select(".choro")
   .append("svg")
@@ -74,17 +66,7 @@ svgBoxChoro.append("text")
   .attr("y",70)
   .style("font-size", "10px")
 
-// var tooltip = svgBox.append("div")
-//   .attr("class","tooltip")
-//   .attr("id","tooltip")
-//   .style("opacity",0)
-
 var path = d3.geoPath();
-
-//x-axis (legend scale)
-
-
-
 
 //use queue function to allow async calls to data
 //ready function when 'ready'
@@ -134,16 +116,12 @@ var colorFunc =
     }
   }
 
-  //var legendTransformByScreenSize = ((orientation=="landscape")?"translate(550,150) scale(1)":"translate(350,200) scale(0.8)")
-
 
   svgBoxChoro.append('g')
     .attr("class","legendQuant")
     .attr("id","legend")
     .attr("transform",legendTransformByScreenSize)
 
-
-      //   //
 
   var legend = d3.legendColor("#fff")
     .labelFormat(d3.format("0.0f"))
@@ -154,24 +132,14 @@ var colorFunc =
     svgBoxChoro.select(".legendQuant")
     .call(legend);
 
+let mapTransformByScreenSize =   "translate(40,80) scale(0.4)"
 
-
-
-//screen is wide
-//
-//
-let mapTransformByScreenSize =
-  ( orientation == "portrait" ?
-    "translate(110,50) scale(0.4)" :
-    "translate(40,80) scale(0.4)" )
-//mapTransformByScreenSize = "translate("+100+","+100+") scale(0.4)"
   //draw map
   svgBoxChoro.append('g')
     .attr("transform",mapTransformByScreenSize)
 
     .attr('class','counties')
     .selectAll("path")
-  //data d is
     .data(topojson.feature(us,us.objects.counties).features)
     .enter().append("path")
     .attr("class","county")
@@ -193,9 +161,6 @@ let mapTransformByScreenSize =
       var exists = education.filter((obj)=>{
         return obj.fips === d.id;
       });
-
-
-
       tooltipChoro
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)

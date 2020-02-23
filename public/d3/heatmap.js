@@ -280,11 +280,11 @@ var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+
   //SCALE LEGEND
   var legendScale = d3.scaleLinear()
     .domain([minTemp, maxTemp])
-    .range([0, 640]);
+    .range([0, 175]);
 
   //LEGEND AXIS ATTRIBUTES
-  var legendAxis = d3.axisBottom(legendScale)
-    .tickSize(10)
+  var legendAxis = d3.axisLeft(legendScale)
+    .tickSize(5)
     .tickValues(legendDomain)
     .tickFormat(d3.format(".1f"));
   //PLACE LEGEND
@@ -292,7 +292,7 @@ var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+
     .append("g")
     .classed("legend", true)
     .attr("id", "legend")
-    .attr("transform", "translate(340,220) rotate(270)");
+    .attr("transform", "translate(440,220) scale(0.7) rotate(180)");
 
   //DRAW LEGEND
   legend
@@ -318,15 +318,14 @@ var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+
       return quantColors(d[0]);
     })
     .style("opacity", "0.9")
-    .attr("x", function(d, i) {  return i * 10;  })
-    .attr("y", 100)
-    .attr("width", 10)
-    .attr("height", 10);
+    .attr("x", 0)
+    .attr("y", function(d, i) {  return i * 11;  })
+    .attr("width", 11)
+    .attr("height", 11);
 
-  //DRAW LEGEND AXIS
-  legend.enter()
-    .append("g")
-    .attr("transform", "translate(0,0) " )
-    .call(legendAxis);
+
+
+     d3.select(".legend")
+       .call(legendAxis)
 
 });

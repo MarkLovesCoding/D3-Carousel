@@ -1,6 +1,4 @@
-
-@keyframes pulse
-{
+@keyframes pulse{
   0%{
   opacity:0;
   stroke:black;
@@ -21,18 +19,6 @@
   opacity:0; stroke:black;
   stroke-width:1;}
 }
-
-// body{
-//   background:rgba(30,30,30,1);
-//   display:flex;
-//   align-items:center;
-//   justify-content:center;
-//   color:black;
-//   font-size:2em;
-//   height:100%;
-//   width:100%;
-//   margin-top:40px
-// }
 .intro{
   .main{
     font-size:2.5em;
@@ -43,72 +29,51 @@
   color:white;
 }
 .svg-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    max-width:1000px;
-    height:100%;
-    max-height:680px;
-    // padding:5%;
-    vertical-align: top;
-    overflow: hidden;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width:1000px;
+  height:100%;
+  max-height:680px;
+  vertical-align: top;
+  overflow: hidden;
 }
 .svg-content {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-//
-// consider Media query for top spacing on svg-content
-//
-//
 .choro{
   position:absolute;
-     width:90%;
-     height:90%;
+  width:90%;
+  height:90%;
   background-color:rgba(230,230,240,0.95);
-  //background-attachment:fixed;
-  border-radius:5px;
-//  margin:50px;
   box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.7)
-
 }
-
 #containerChoro{
   align-items:center;
   justify-content:center;
   border-radius:5px;
   display:flex;
-  //min-height:300px;
-
-
-   height:54vw;
-   max-height:680px ;
-   width:80vw;
-   max-width:1000px;
-
-
-   background:url("//unsplash.it/1000/680");
-/*   background:url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");  */
+  height:54vw;
+  max-height:680px ;
+  width:80vw;
+  max-width:1000px;
+  background:url("//unsplash.it/1000/680");
   position:relative;
   box-shadow:inset 0px 0px 15px 2px black;
 }
-
-
-
 .counties {
-  fill: none;  cursor:default;
+  fill: none;
+  cursor:default;
 }
-
 .states {
   fill: none;
   stroke: #fff;
   stroke-linejoin: round;
   cursor:default;
 }
-
 #tooltipChoro{
   position:absolute;
   font-size:1em;
@@ -118,7 +83,7 @@
   z-index:500;
   box-shadow:1px 1px 5px -1px black;
   border-radius:6px;
- text-align:center;
+  text-align:center;
   pointer-events:none;
 }
 .county{
@@ -127,11 +92,8 @@
   transition:stroke-width 100 ease;
 }
 .county:hover{
-/*   stroke-width:4;
-  stroke:rgba(250,150,110,1); */
   z-index:100;
   animation: pulse 600ms ease-out infinite;
-
 }
 .caption{
   z-index:400;

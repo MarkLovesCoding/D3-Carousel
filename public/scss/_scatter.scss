@@ -1,109 +1,51 @@
 .dot {
-  selection: cursor;
-//  cursor:pointer !important;
   &:hover{
     animation:pulse 500ms ease-out infinite;
   }
 }
 circle{
   margin:5px;
-    cursor:pointer ;
-
+  cursor:pointer ;
 }
 body {
-  // background: rgba(10, 10, 10, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  //font-family:'Barlow Semi Condensed';
   font-family: 'Fira Sans Extra Condensed'l
-  // color: black;
-  // font-size: 2em;
-  // // height: 100%;
-  // // width: 100%;
-  // margin-top: 40px;
 }
-
 .scatterPlot {
   position: absolute;
-  // min-height:270px;
-
-   width:90%;
-   height:90%;
-
-
+  width:90%;
+  height:90%;
   background-color: rgba(255, 255, 255, 0.95);
-//  border-radius: 5px;
-
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
   cursor:pointer;
-
 }
-
 #containerScatter {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   display: flex;
-  // min-height:300px;
-   height:54vw;
-   max-height:680px;
-   width:80vw;
-   max-width:1000px;
-//  background:url("//unsplash.it/1000/680");
+  height:54vw;
+  max-height:680px;
+  width:80vw;
+  max-width:1000px;
   background: url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");
   position: relative;
   box-shadow: inset 0px 0px 15px black;
-  // ::after{
-  //   content:'';
-  //   position:absolute;
-  //   top:0;
-  //   left:0;
-  //   width:100%;
-  //   height:100%;
-  //   border-radius:inherit;
-  //     background: url("https://www.michaelblann.com/wp-content/uploads/2016/05/Alpe-dHuez_01.jpg");
-  //     background-attachment:fixed;
-  //
-  // }
 }
 .scatterToolName{
   font-weight:1000;
   text-decoration: underline;
   text-align:center;
 }
-
-/* #barGraph{
-  color:red;
-  width:100px;
-  height:100px;
-  background-color:white;
-  z-index:4
-} */
-
-// @keyframes pulse {
-//   50% {
-//     opacity: 0.4;
-//   }
-// }
-// .dot {
-//   stroke: #000;
-//   opacity: 0.85;
-// }
-// .dot:hover {
-//   animation: pulse 700ms infinite;
-//   stroke-width: 2;
-// }
-
 #tooltipScatter {
   position:absolute;
   font-size: 1rem;
   border-radius: 6px;
   background-color: rgba(250,250,250,0.95);
-   border: 1px solid;
-
+  border: 1px solid;
   padding: 5px;
-
   z-index: 5;
   transition:all 1s ease;
 }
