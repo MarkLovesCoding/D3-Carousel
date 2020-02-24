@@ -198,27 +198,31 @@ console.log("2")
       var date = new Date(d.year, d.month - 1);
 
       //TOOLTIP TEXTTITLE
-      var htmlString =
-        "<span>" +
-        d3.timeFormat("%B")(date) +
-        " - " +
-        d.year +
-        "</span>" +
-        "<br> <span>" +
-        d3.format("+.1f")(baseTemp + d.variance) +
-        "&#8451" +
-        "</span>" +
-        "<br> <span>" +
-        d3.format("+.1f")(d.variance) +
-        "&#8451" +
-        "</span>";
-
-var tooltipX = (event.offsetX > 250 ? event.offsetX+20+"px" : event.offsetX+200+"px")
-
+      // var htmlString =
+      //   "<span>" +
+      //   d3.timeFormat("%B")(date) +
+      //   " - " +
+      //   d.year +
+      //   "</span>" +
+      //   "<br> <span>" +
+      //   d3.format("+.1f")(baseTemp + d.variance) +
+      //   "&#8451" +
+      //   "</span>" +
+      //   "<br> <span>" +
+      //   d3.format("+.1f")(d.variance) +
+      //   "&#8451" +
+      //   "</span>";
+// if(event.offsetX>250){}
+//console.log(tooltipX);
       tooltipHeatmap
         .attr("data-year", d.year)
         .style("opacity",1)
-        .style("left", event.offsetX+20+"px")
+        .style("left", ()=>{
+          if(event.offsetX<300){
+          return event.offsetX+20+"px"}
+        else{
+          return event.offsetX-240+"px"
+        }})
         .style("top",event.offsetY-50+"px" )
         .style("z-index",5)
         .style("border", "4px " + quantColors(d.variance) + " solid")

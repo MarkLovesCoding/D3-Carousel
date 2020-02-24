@@ -4,31 +4,31 @@
 
 //sizing/scaling
 
-const h = window.innerWidth*0.8;
-var   orientation = (screenW>screenH ?"portrait":"landscape");
-var screenH = window.screen.height;
-var screenW = window.screen.width;;
-var legendTransformByScreenSize;
-
-
-function windowSize(){
-  screenH = window.screen.height
-  screenW = window.screen.width;
-  orientation = (screenW>screenH ?"portrait":"landscape")
-  var legendTranslateX = (orientation =="landscape")?550:100;
-  var legendTranslateY = (orientation =="landscape")?150:100;
-  legendTransformByScreenSize = "translate(425,175) scale(0.6)"
-    // ( orientation == "portrait" ?
-    // "translate(450,150) scale(0.6)" :
-    // "translate(400,200) scale(0.6)" )
-  console.log("width: ",screenW)
-  console.log("width: ",orientation)
-
-}
-
-windowSize();
-window.addEventListener("resize",windowSize());
-
+// const h = window.innerWidth*0.8;
+// var   orientation ;
+// var screenH ;
+// var screenW ;
+// var legendTransformByScreenSize;
+//
+//
+// function windowSize(){
+//   screenH = window.screen.height
+//   screenW = window.screen.width;
+//   orientation = (screenW>screenH ?"portrait":"landscape")
+//   // var legendTranslateX = (orientation =="landscape")?550:100;
+//   // var legendTranslateY = (orientation =="landscape")?150:100;
+//   legendTransformByScreenSize = "translate(425,175) scale(0.6)"
+//     // ( orientation == "portrait" ?
+//     // "translate(450,150) scale(0.6)" :
+//     // "translate(400,200) scale(0.6)" )
+//   console.log("width: ",screenW)
+//   console.log("width: ",orientation)
+//
+// }
+//
+// windowSize();
+// window.addEventListener("resize",windowSize());
+var  legendTransformByScreenSize = "translate(425,175) scale(0.6)"
 //
 //
 
@@ -164,7 +164,11 @@ let mapTransformByScreenSize =   "translate(40,80) scale(0.4)"
       tooltipChoro
         .attr("data-education",exists[0].bachelorsOrHigher)
         .style("opacity",1)
-        .style("left",event.offsetX+20+"px")
+        .style("left",()=>{    if(event.offsetX<400){
+            return event.offsetX+20+"px"}
+          else{
+            return event.offsetX-225+"px"}}
+          )
         .style("top",event.offsetY-50+"px" )
         .style("border", "10px "+ color_scale(exists[0].bachelorsOrHigher)+ " solid")
         .html(exists[0].area_name+": "+exists[0].bachelorsOrHigher+"%")
