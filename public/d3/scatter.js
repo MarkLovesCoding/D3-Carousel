@@ -157,15 +157,17 @@ console.log(d)
           .style("opacity", 0.9)
               .style("z-index", 2000)
           .attr("data-year", d.Year)
-          .html(
-          "  "+d.Name +  ", " +  d.Nationality +" " +
-              "<br/>" + "Year: " + d.Year + ", " +"<br/><br/>"+"Ascent Time: "+Math.floor(d.Seconds/60)+":"+(d.Seconds%60<10? "0"+d.Seconds%60:d.Seconds%60) +
+          .html(" "+d.Name +" "+  "," +  d.Nationality + " " + "<br/>" +
+              "Year: " + d.Year + " " + "<br/>"+
+              "Ascent Time: "+Math.floor(d.Seconds/60)+":"+(d.Seconds%60<10? "0"+d.Seconds%60:d.Seconds%60) 
+              +"<br/>"+
+              (d.Doping ? "<br/>" + d.Doping : "")
 
-              (d.Doping ? "<br/><br/>" + d.Doping : "")
           )
           .style("border", "5px " + color(d.Doping != "") + " solid")
+
           .style("left", event.offsetX-60 + "px" )
-          .style("top", ()=>{return (event.offsetY<100 ? event.offsetY+40+"px" : event.offsetY -140+"px" )});
+          .style("top", ()=>{return (event.offsetY<150 ? event.offsetY+20+"px" : event.offsetY -120+"px" )});
       })
       .on("mouseout", d => {
         tooltipScatter.style("opacity", 0);

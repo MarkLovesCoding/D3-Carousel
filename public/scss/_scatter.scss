@@ -11,7 +11,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fira Sans Extra Condensed'l
+  font-family: 'Righteous'
 }
 .scatterPlot {
   position: absolute;
@@ -19,7 +19,7 @@ body {
   height:90%;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
-  cursor:pointer;
+  cursor:crosshair;   font-family:"Roboto";
 }
 #containerScatter {
   align-items: center;

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Fira+Sans+Extra+Condensed&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto");
+@import url("https://fonts.googleapis.com/css?family=Oxanium|Righteous&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -416,7 +417,8 @@ img {
   width: 90%;
   height: 90%;
   background-color: rgba(230, 230, 240, 0.95);
-  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.7); }
+  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.7);
+  font-family: "Roboto"; }
 
 #containerChoro {
   align-items: center;
@@ -520,11 +522,7 @@ img {
   border-radius: 20px;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9);
   text-shadow: 1px 2px 4px black;
-  font-family: "Merriweather";
   font-size: 1rem; }
-
-#titleHeatMap {
-  font-family: 'Barlow Semi Condensed'; }
 
 svg {
   stroke-width: 0.2;
@@ -552,7 +550,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fira Sans Extra Condensed'l; }
+  font-family: 'Righteous'; }
 
 .scatterPlot {
   position: absolute;
@@ -560,7 +558,8 @@ body {
   height: 90%;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
-  cursor: pointer; }
+  cursor: crosshair;
+  font-family: "Roboto"; }
 
 #containerScatter {
   align-items: center;
@@ -592,3 +591,41 @@ body {
 
 *:active {
   cursor: grabbing; }
+
+.contact-container {
+  color: white;
+  display: inline; }
+
+.body {
+  position: relative; }
+
+.git, .codepen {
+  display: inline;
+  position: absolute;
+  fill: white !important;
+  font-size: 2em;
+  bottom: 50px;
+  right: 150px; }
+
+.git {
+  bottom: 50px;
+  right: 150px; }
+
+.codepen {
+  bottom: 20px;
+  right: 150px; }
+
+i {
+  color: white;
+  height: 5em;
+  width: 4em;
+  fill: white;
+  bottom: 50px;
+  right: 50px; }
+
+.brand {
+  font-family: 'Righteous';
+  color: white;
+  position: absolute;
+  left: 10px;
+  top: 10px; }
