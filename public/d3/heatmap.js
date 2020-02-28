@@ -218,10 +218,10 @@ console.log("2")
         .attr("data-year", d.year)
         .style("opacity",1)
         .style("left", ()=>{
-          if(event.offsetX<300){
-          return event.offsetX+20+"px"}
+          if(event.offsetX<350){
+          return event.offsetX+10+"px"}
         else{
-          return event.offsetX-240+"px"
+          return event.offsetX-150+"px"
         }})
         .style("top",event.offsetY-50+"px" )
         .style("z-index",5)
@@ -230,12 +230,12 @@ console.log("2")
         d3.timeFormat("%B")(date) +
         " " +
         d.year +
-        "</span>" +
-        "<br> <span class='tipSmall'>" + "temperature: " +
+        "</span>" + "</br>"+
+        "<br> <span class='tipSmall'>" + "Temp.: " +
         d3.format("+.1f")(baseTemp + d.variance) +
         "&#8451" +
         "</span>" +
-        "<br> <span class='tipSmall'>" + "delta: " +
+        "<br> <span class='tipSmall'>" + "Δ: " +
         d3.format("+.1f")(d.variance) +
         "&#8451" +
         "</span>");
